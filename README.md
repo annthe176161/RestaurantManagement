@@ -120,17 +120,68 @@ Dưới đây là các tính năng thực tế thường rất cần cho chuỗi
 
 ---
 
-## Định Hướng Công Nghệ Đề Xuất (Tham Khảo)
+## Công Nghệ Chính Thức (Technology Stack)
 
-*(Có thể thay đổi tùy theo team phát triển và ngân sách)*
+Bộ công nghệ thống nhất cho toàn bộ dự án, đảm bảo tính đồng bộ xuyên suốt từ Database, Backend, API đến Web và Mobile:
 
-- **Frontend (Web & Admin):** React / Next.js + TailwindCSS (giao diện hiện đại, responsive).
-- **Mobile App (Nhân viên / Khách hàng - tùy chọn):** React Native hoặc Flutter (hoặc dùng PWA trên trình duyệt).
-- **Backend API:** Node.js (NestJS) hoặc Python (FastAPI) / Go.
-- **Realtime (Chat & Thông báo):** Socket.io / WebSockets / Redis Pub-Sub.
-- **Database:** PostgreSQL (lưu dữ liệu giao dịch, hóa đơn, nhân sự) + Redis (cache, realtime).
-- **AI Đọc Hóa Đơn:** Gemini Vision API / OpenAI Vision / Google Document AI để bóc tách bảng từ ảnh hóa đơn.
-- **Xuất Excel & In PDF Menu:** `ExcelJS` / `SheetJS` (xuất `.xlsx` nhiều sheet, có công thức tổng hợp) và `Puppeteer` / `React-PDF` (render mẫu in Menu chuẩn nét).
+### Backend
+- **Ngôn ngữ & Nền tảng:** C# / .NET 10 LTS
+- **Framework:** ABP Framework 10.x (Modular Architecture, DDD, Application Services)
+- **Database & ORM:** SQL Server, Entity Framework Core (LINQ, Database Migration)
+- **API & Bảo mật:** RESTful API, JWT Authentication & Authorization
+
+### Frontend Web
+- **Framework & Ngôn ngữ:** Angular (phiên bản tương thích với ABP 10.x) + TypeScript
+- **UI Library & Styling:** NG-ZORRO, HTML5 / SCSS
+
+### Mobile
+- **Framework & Ngôn ngữ:** Flutter + Dart (Android / iOS)
+
+### Kiến Trúc & Thiết Kế (Architecture & Design)
+- **Domain-Driven Design (DDD)**
+- **Layered Architecture**
+- **Modular Monolith** (chưa tách Microservices để tối ưu phát triển và bảo trì)
+- **Repository Pattern & Dependency Injection**
+
+### Công Nghệ & Thư Viện Bổ Trợ
+*(Triển khai linh hoạt theo từng giai đoạn nghiệp vụ; SignalR, Redis và RabbitMQ sẽ được bổ sung khi bài toán yêu cầu)*
+
+| Công nghệ / Thư viện | Mục đích sử dụng |
+| :--- | :--- |
+| **AutoMapper** | Mapping giữa Entity và DTO |
+| **FluentValidation** | Kiểm tra dữ liệu đầu vào |
+| **Serilog** | Ghi log hệ thống |
+| **SignalR** | Cập nhật dữ liệu, chat & thông báo realtime |
+| **Redis** | Cache dữ liệu & tối ưu hiệu năng |
+| **RabbitMQ** | Message Broker cho giao tiếp bất đồng bộ |
+| **Hangfire / ABP Background Jobs** | Xử lý tác vụ nền (tổng hợp báo cáo, AI OCR hóa đơn...) |
+| **Docker / Docker Compose** | Đóng gói và chạy các dịch vụ |
+
+### Kiểm Thử & Công Cụ Phát Triển (Testing & Dev Tools)
+- **Testing:** xUnit, Moq / NSubstitute
+- **API & Docs:** Swagger / OpenAPI, Postman
+- **Quản lý mã nguồn & IDE:** Git / GitHub, Visual Studio 2022, Visual Studio Code
+
+---
+
+## Kiến Trúc Module Dự Kiến (Modular Monolith)
+
+Hệ thống được tổ chức theo hướng **Modular Monolith**, mỗi module đảm nhiệm một nhóm nghiệp vụ độc lập:
+
+```text
+RestaurantManagement
+├── Identity              # Tài khoản, phân quyền (RBAC), JWT
+├── Organization          # Cấu trúc chuỗi nhà hàng, thiết lập chung
+├── BranchManagement      # Quản lý các cơ sở / chi nhánh
+├── EmployeeManagement    # Nhân sự, xếp lịch tuần, chấm công, tính lương
+├── MenuManagement        # Thực đơn, giá theo cơ sở, trạng thái món, in menu
+├── TableManagement       # Sơ đồ bàn, đặt bàn trực tuyến
+├── OrderManagement       # Gọi món, xử lý đơn hàng tại bàn / online
+├── Payment               # Thanh toán, hóa đơn bán hàng (xuất)
+├── Inventory             # Quản lý kho, định lượng nguyên liệu
+├── SupplierManagement    # Nhà cung cấp, hóa đơn nhập hàng (mua), AI OCR hóa đơn
+└── Reporting             # Dashboard doanh thu, tổng hợp cuối tháng, xuất Excel
+```
 
 ---
 
