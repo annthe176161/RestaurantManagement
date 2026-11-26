@@ -1,11 +1,11 @@
-# 🇰🇷 Hệ Thống Quản Lý Chuỗi Nhà Hàng Hàn Quốc (Korean Restaurant Chain Management)
+# Hệ Thống Quản Lý Chuỗi Nhà Hàng Hàn Quốc (Korean Restaurant Chain Management)
 
 > **Tài liệu tổng quan tính năng & kiến trúc dự án (Bản nháp v1.0)**
 > Tài liệu này tổng hợp toàn bộ các chức năng cốt lõi đã đề xuất cho hệ thống quản lý chuỗi nhà hàng Hàn Quốc, kèm theo các gợi ý mở rộng để dễ dàng rà soát và bổ sung thêm trước khi bước vào giai đoạn thiết kế chi tiết & lập trình.
 
 ---
 
-## 🎯 Mục Tiêu Dự Án
+## Mục Tiêu Dự Án
 
 Xây dựng một nền tảng **All-in-One** phục vụ đồng thời 3 nhóm đối tượng:
 1. **Khách hàng:** Xem bảng tin (Newsfeed), khám phá các cơ sở, đặt bàn trực tuyến, xem menu.
@@ -14,20 +14,20 @@ Xây dựng một nền tảng **All-in-One** phục vụ đồng thời 3 nhóm
 
 ---
 
-## 👥 Phân Quyền Hệ Thống (Roles)
+## Phân Quyền Hệ Thống (Roles)
 
 | Vai trò | Phạm vi quyền hạn chính |
 | :--- | :--- |
-| **👑 Sếp / Chủ chuỗi (CEO / Super Admin)** | Xem toàn bộ cơ sở, dashboard doanh thu tổng & từng chi nhánh, duyệt báo cáo tài chính/Excel, quản lý quản lý cơ sở, xem tất cả dữ liệu. |
-| **🧑‍💼 Quản lý cơ sở (Branch Manager)** | Quản lý nhân viên tại chi nhánh, xếp lịch làm theo tuần, tính lương, thêm/sửa/in menu, tạo hóa đơn, xác nhận đặt bàn, đăng bài lên Newsfeed. |
-| **🧑‍🍳 Nhân viên (Staff / Bếp / Phục vụ / Thu ngân)** | Xem lịch làm cá nhân, check-in/check-out giờ làm, xem bảng công/lương cá nhân, chat realtime nội bộ, nhận thông báo realtime. |
-| **🍽️ Khách hàng (Customer)** | Lướt Newsfeed nhà hàng, xem danh sách cơ sở, xem menu, đặt bàn trực tuyến, tương tác bài viết, nhận thông báo xác nhận bàn. |
+| **Sếp / Chủ chuỗi (CEO / Super Admin)** | Xem toàn bộ cơ sở, dashboard doanh thu tổng & từng chi nhánh, duyệt báo cáo tài chính/Excel, quản lý quản lý cơ sở, xem tất cả dữ liệu. |
+| **Quản lý cơ sở (Branch Manager)** | Quản lý nhân viên tại chi nhánh, xếp lịch làm theo tuần, tính lương, thêm/sửa/in menu, tạo hóa đơn, xác nhận đặt bàn, đăng bài lên Newsfeed. |
+| **Nhân viên (Staff / Bếp / Phục vụ / Thu ngân)** | Xem lịch làm cá nhân, check-in/check-out giờ làm, xem bảng công/lương cá nhân, chat realtime nội bộ, nhận thông báo realtime. |
+| **Khách hàng (Customer)** | Lướt Newsfeed nhà hàng, xem danh sách cơ sở, xem menu, đặt bàn trực tuyến, tương tác bài viết, nhận thông báo xác nhận bàn. |
 
 ---
 
-## 🧩 Các Phân Hệ Chức Năng Chính
+## Các Phân Hệ Chức Năng Chính
 
-### 1. 🏢 Quản Lý Chuỗi Nhà Hàng & Tổng Quan Doanh Thu (Multi-Branch & Analytics)
+### 1. Quản Lý Chuỗi Nhà Hàng & Tổng Quan Doanh Thu (Multi-Branch & Analytics)
 - **Danh sách cơ sở:** Hiển thị đầy đủ các chi nhánh (tên cơ sở, địa chỉ, hotline, giờ mở cửa, trạng thái hoạt động, số bàn trống/đang phục vụ).
 - **Dashboard cho Sếp:**
   - Xem tổng doanh thu toàn chuỗi theo ngày / tuần / tháng / quý / năm.
@@ -37,7 +37,7 @@ Xây dựng một nền tảng **All-in-One** phục vụ đồng thời 3 nhóm
 
 ---
 
-### 2. 📱 Newsfeed Khách Hàng & Đặt Bàn Trực Tuyến (Social Feed & Booking)
+### 2. Newsfeed Khách Hàng & Đặt Bàn Trực Tuyến (Social Feed & Booking)
 - **Newsfeed (Giao diện tương tự Facebook):**
   - Hiển thị danh sách bài đăng từ chuỗi hoặc từng cơ sở: món mới, combo ưu đãi, sự kiện, không gian nhà hàng, review.
   - Khách hàng có thể **Thích (Like), Bình luận (Comment), Chia sẻ (Share)** hoặc lưu bài viết.
@@ -49,7 +49,7 @@ Xây dựng một nền tảng **All-in-One** phục vụ đồng thời 3 nhóm
 
 ---
 
-### 3. 📅 Quản Lý Nhân Sự, Lịch Làm Việc & Tính Lương (HR, Scheduling & Payroll)
+### 3. Quản Lý Nhân Sự, Lịch Làm Việc & Tính Lương (HR, Scheduling & Payroll)
 - **Xếp lịch làm việc theo tuần:**
   - Quản lý tạo & sắp xếp ca làm (Ca sáng, Ca chiều, Ca tối, Full-time/Part-time) cho từng nhân viên theo tuần.
   - Hỗ trợ sao chép lịch từ tuần trước, cảnh báo trùng ca hoặc thiếu người ở khung giờ cao điểm.
@@ -65,7 +65,7 @@ Xây dựng một nền tảng **All-in-One** phục vụ đồng thời 3 nhóm
 
 ---
 
-### 4. 💬 Chat Realtime & Thông Báo Realtime (Realtime Communication)
+### 4. Chat Realtime & Thông Báo Realtime (Realtime Communication)
 - **Chat Realtime:**
   - Kênh chat nội bộ theo từng cơ sở, nhóm bộ phận (Bếp, Phục vụ, Thu ngân, Quản lý) và chat 1-1.
   - Hỗ trợ gửi tin nhắn văn bản, hình ảnh, tệp tin, tag tên (`@mention`) để trao đổi công việc nhanh chóng.
@@ -75,7 +75,7 @@ Xây dựng một nền tảng **All-in-One** phục vụ đồng thời 3 nhóm
 
 ---
 
-### 5. 📜 Quản Lý Thực Đơn & In Menu (Menu Management & Printing)
+### 5. Quản Lý Thực Đơn & In Menu (Menu Management & Printing)
 - **Thêm & điều chỉnh thực đơn:**
   - Thêm món mới (tên tiếng Việt / tiếng Hàn, hình ảnh, giá bán, mô tả, danh mục: Thịt nướng, Lẩu, Tokbokki, Đồ uống, Combo...).
   - Cập nhật giá, bật/tắt trạng thái **Còn món / Hết món** theo thời gian thực.
@@ -87,40 +87,40 @@ Xây dựng một nền tảng **All-in-One** phục vụ đồng thời 3 nhóm
 
 ---
 
-### 6. 🧾 Hóa Đơn Xuất/Mua, AI Đọc Hóa Đơn & Xuất Excel (Invoices, AI OCR & Reporting)
+### 6. Hóa Đơn Xuất/Mua, AI Đọc Hóa Đơn & Xuất Excel (Invoices, AI OCR & Reporting)
 - **Quản lý hóa đơn xuất & mua:**
   - **Hóa đơn bán hàng (Xuất):** Ghi nhận doanh thu từng bàn/đơn hàng, phương thức thanh toán (Tiền mặt, Chuyển khoản, Thẻ, Ví điện tử), VAT/giảm giá.
   - **Hóa đơn nhập hàng / chi phí (Mua):** Ghi nhận hóa đơn nhập thịt, rau củ, gia vị Hàn Quốc, gas, điện nước, chi phí vận hành.
-- **🤖 AI Đọc Hóa Đơn (AI OCR / Document Extraction):**
+- **AI Đọc Hóa Đơn (AI OCR / Document Extraction):**
   - Cho phép chụp ảnh hoặc tải lên file PDF/ảnh hóa đơn giấy (từ nhà cung cấp hoặc hóa đơn bán lẻ).
   - AI tự động nhận diện và bóc tách dữ liệu có cấu trúc: **Ngày hóa đơn, Tên nhà cung cấp, Danh sách mặt hàng, Số lượng, Đơn vị tính, Đơn giá, Thành tiền, Thuế, Tổng cộng**.
   - Hiển thị dạng bảng để kế toán/quản lý kiểm tra nhanh và lưu vào hệ thống.
-- **📊 Xuất File Excel & Tổng Hợp Cuối Tháng:**
+- **Xuất File Excel & Tổng Hợp Cuối Tháng:**
   - Xuất dữ liệu các bảng hóa đơn (nhập/xuất) ra file `.xlsx` theo chuẩn kế toán.
   - Tự động tổng hợp báo cáo cuối tháng: Bảng kê hóa đơn đầu vào/đầu ra, Báo cáo doanh thu theo cơ sở, Báo cáo chi phí, Bảng lương nhân viên.
 
 ---
 
-## 💡 Gợi Ý Các Chức Năng Có Thể Bổ Sung Thêm
+## Gợi Ý Các Chức Năng Có Thể Bổ Sung Thêm
 
 Dưới đây là các tính năng thực tế thường rất cần cho chuỗi nhà hàng Hàn Quốc (đặc biệt mô hình BBQ / Lẩu) để bạn cân nhắc thêm vào dự án:
 
-1. **🍽️ POS & Gọi món tại bàn (Order / QR Order):**
+1. **POS & Gọi món tại bàn (Order / QR Order):**
    - Nhân viên dùng tablet order tại bàn hoặc khách tự quét QR tại bàn để gọi thêm món (thịt, panchan, nước), bắn thẳng phiếu xuống Bếp/Bar.
-2. **🖥️ Màn hình Bếp/Bar (KDS - Kitchen Display System):**
+2. **Màn hình Bếp/Bar (KDS - Kitchen Display System):**
    - Hiển thị danh sách món cần làm theo thứ tự thời gian, đánh dấu đã lên món để tránh sót món khi đông khách.
-3. **📦 Quản lý Kho & Định lượng nguyên liệu (Inventory):**
+3. **Quản lý Kho & Định lượng nguyên liệu (Inventory):**
    - Theo dõi tồn kho thịt/gia vị tại từng cơ sở, tự động trừ kho khi bán món, cảnh báo nguyên liệu sắp hết hoặc sắp hết hạn.
-4. **🎁 Khách hàng thân thiết (CRM & Membership):**
+4. **Khách hàng thân thiết (CRM & Membership):**
    - Tích điểm theo số điện thoại, phân hạng thành viên (Bạc, Vàng, VIP), tặng voucher sinh nhật, mã giảm giá áp dụng toàn chuỗi.
-5. **🌐 Đa ngôn ngữ (Việt - Hàn - Anh):**
+5. **Đa ngôn ngữ (Việt - Hàn - Anh):**
    - Hữu ích nếu sếp hoặc quản lý/đầu bếp là người Hàn Quốc, hoặc phục vụ khách du lịch/khách Hàn tại Việt Nam.
-6. **🪑 Sơ đồ bàn trực quan (Floor Plan):**
+6. **Sơ đồ bàn trực quan (Floor Plan):**
    - Xem sơ đồ bàn theo thời gian thực: Bàn trống (Xanh), Đang ăn (Đỏ), Đã đặt trước (Vàng), Gộp bàn / Chuyển bàn.
 
 ---
 
-## 🛠️ Định Hướng Công Nghệ Đề Xuất (Tham Khảo)
+## Định Hướng Công Nghệ Đề Xuất (Tham Khảo)
 
 *(Có thể thay đổi tùy theo team phát triển và ngân sách)*
 
@@ -134,7 +134,7 @@ Dưới đây là các tính năng thực tế thường rất cần cho chuỗi
 
 ---
 
-## 📝 Ghi Chú Rà Soát
+## Ghi Chú Rà Soát
 
 - [ ] Chốt danh sách tính năng bắt buộc ở **Giai đoạn 1 (MVP)** và các tính năng làm ở **Giai đoạn 2**.
 - [ ] Bổ sung thêm các nghiệp vụ đặc thù riêng của chuỗi nhà hàng (nếu có).
