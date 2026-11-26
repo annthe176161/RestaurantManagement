@@ -122,13 +122,14 @@ Dưới đây là các tính năng thực tế thường rất cần cho chuỗi
 
 ## Công Nghệ Chính Thức (Technology Stack)
 
-Bộ công nghệ thống nhất cho toàn bộ dự án, đảm bảo tính đồng bộ xuyên suốt từ Database, Backend, API đến Web và Mobile:
+Bộ công nghệ hiện đại thống nhất cho toàn bộ dự án theo kiến trúc **Microservices**, đảm bảo khả năng mở rộng độc lập, chịu tải cao và đồng bộ xuyên suốt từ Database, Backend, API Gateway đến Web và Mobile:
 
-### Backend
+### Backend & Microservices
 - **Ngôn ngữ & Nền tảng:** C# / .NET 10 LTS
-- **Framework:** ABP Framework 10.x (Modular Architecture, DDD, Application Services)
-- **Database & ORM:** SQL Server, Entity Framework Core (LINQ, Database Migration)
-- **API & Bảo mật:** RESTful API, JWT Authentication & Authorization
+- **Framework:** ABP Framework 10.x (Microservice Architecture, DDD, Distributed Event Bus, Application Services)
+- **API Gateway:** YARP (Yet Another Reverse Proxy) / Ocelot (Routing, Rate Limiting, Load Balancing, Auth Forwarding)
+- **Database & ORM:** SQL Server (Database per Service), Entity Framework Core (LINQ, Database Migration)
+- **API & Bảo mật:** RESTful API, gRPC (giao tiếp nội bộ tốc độ cao giữa các service khi cần), OpenIddict / JWT Authentication & Authorization
 
 ### Frontend Web
 - **Framework & Ngôn ngữ:** Angular (phiên bản tương thích với ABP 10.x) + TypeScript
@@ -138,49 +139,56 @@ Bộ công nghệ thống nhất cho toàn bộ dự án, đảm bảo tính đ�
 - **Framework & Ngôn ngữ:** Flutter + Dart (Android / iOS)
 
 ### Kiến Trúc & Thiết Kế (Architecture & Design)
-- **Domain-Driven Design (DDD)**
-- **Layered Architecture**
-- **Modular Monolith** (chưa tách Microservices để tối ưu phát triển và bảo trì)
-- **Repository Pattern & Dependency Injection**
+- **Microservices Architecture** (tách biệt hoàn toàn theo từng domain nghiệp vụ, deploy và scale độc lập)
+- **Domain-Driven Design (DDD) & Bounded Context**
+- **Event-Driven Architecture** (giao tiếp bất đồng bộ giữa các services qua RabbitMQ & ABP Distributed Event Bus)
+- **Database per Service** (mỗi service sở hữu database độc lập)
+- **CQRS** (Command Query Responsibility Segregation cho các luồng đọc/ghi tải cao như Reporting, Order)
+- **API Gateway Pattern, Repository Pattern & Dependency Injection**
 
-### Công Nghệ & Thư Viện Bổ Trợ
-*(Triển khai linh hoạt theo từng giai đoạn nghiệp vụ; SignalR, Redis và RabbitMQ sẽ được bổ sung khi bài toán yêu cầu)*
-
+### Hạ Tầng, Realtime & Thư Viện Bổ Trợ
 | Công nghệ / Thư viện | Mục đích sử dụng |
 | :--- | :--- |
+| **RabbitMQ** | Message Broker & Event Bus giao tiếp bất đồng bộ giữa các Microservices |
+| **Redis** | Distributed Cache & SignalR Backplane khi scale nhiều instance |
+| **SignalR** | Chat realtime, thông báo realtime, cập nhật trạng thái bàn/đơn hàng |
+| **Hangfire / ABP Background Jobs** | Xử lý tác vụ nền (AI OCR hóa đơn, tổng hợp báo cáo, xuất Excel) |
 | **AutoMapper** | Mapping giữa Entity và DTO |
 | **FluentValidation** | Kiểm tra dữ liệu đầu vào |
-| **Serilog** | Ghi log hệ thống |
-| **SignalR** | Cập nhật dữ liệu, chat & thông báo realtime |
-| **Redis** | Cache dữ liệu & tối ưu hiệu năng |
-| **RabbitMQ** | Message Broker cho giao tiếp bất đồng bộ |
-| **Hangfire / ABP Background Jobs** | Xử lý tác vụ nền (tổng hợp báo cáo, AI OCR hóa đơn...) |
-| **Docker / Docker Compose** | Đóng gói và chạy các dịch vụ |
+| **Serilog & OpenTelemetry** | Centralized Logging & Distributed Tracing giữa các services |
+| **Docker & Docker Compose / Kubernetes** | Containerization, đóng gói và điều phối toàn bộ hệ thống Microservices |
 
 ### Kiểm Thử & Công Cụ Phát Triển (Testing & Dev Tools)
-- **Testing:** xUnit, Moq / NSubstitute
-- **API & Docs:** Swagger / OpenAPI, Postman
+- **Testing:** xUnit, Moq / NSubstitute (Unit Test & Integration Test cho từng service)
+- **API & Docs:** Swagger / OpenAPI (tổng hợp qua API Gateway), Postman
 - **Quản lý mã nguồn & IDE:** Git / GitHub, Visual Studio 2022, Visual Studio Code
 
 ---
 
-## Kiến Trúc Module Dự Kiến (Modular Monolith)
+## Kiến Trúc Hệ Thống Dự Kiến (Microservices)
 
-Hệ thống được tổ chức theo hướng **Modular Monolith**, mỗi module đảm nhiệm một nhóm nghiệp vụ độc lập:
+Hệ thống được thiết kế theo mô hình **Microservices**, giao tiếp đồng bộ qua **API Gateway / gRPC** và bất đồng bộ qua **RabbitMQ Event Bus**:
 
 ```text
 RestaurantManagement
-├── Identity              # Tài khoản, phân quyền (RBAC), JWT
-├── Organization          # Cấu trúc chuỗi nhà hàng, thiết lập chung
-├── BranchManagement      # Quản lý các cơ sở / chi nhánh
-├── EmployeeManagement    # Nhân sự, xếp lịch tuần, chấm công, tính lương
-├── MenuManagement        # Thực đơn, giá theo cơ sở, trạng thái món, in menu
-├── TableManagement       # Sơ đồ bàn, đặt bàn trực tuyến
-├── OrderManagement       # Gọi món, xử lý đơn hàng tại bàn / online
-├── Payment               # Thanh toán, hóa đơn bán hàng (xuất)
-├── Inventory             # Quản lý kho, định lượng nguyên liệu
-├── SupplierManagement    # Nhà cung cấp, hóa đơn nhập hàng (mua), AI OCR hóa đơn
-└── Reporting             # Dashboard doanh thu, tổng hợp cuối tháng, xuất Excel
+├── gateways
+│   └── ApiGateway (YARP)                # Điểm vào duy nhất cho Web & Mobile, định tuyến & bảo mật
+├── services
+│   ├── IdentityService                  # Auth Server (OpenIddict/JWT), User, Role, Permission (RBAC)
+│   ├── BranchService                    # Quản lý chuỗi nhà hàng, cơ sở, cấu hình chi nhánh
+│   ├── EmployeeService                  # Nhân sự, xếp lịch tuần, check-in/check-out, tính lương
+│   ├── MenuService                      # Thực đơn, giá theo cơ sở, trạng thái món, xuất PDF in menu
+│   ├── TableBookingService              # Sơ đồ bàn, đặt bàn trực tuyến
+│   ├── OrderService                     # Gọi món (POS / QR Order), xử lý đơn hàng
+│   ├── PaymentService                   # Thanh toán, hóa đơn bán hàng (xuất)
+│   ├── InventorySupplierService         # Kho, định lượng nguyên liệu, nhà cung cấp, hóa đơn nhập (mua)
+│   ├── AiOcrService                     # AI đọc hóa đơn (OCR), bóc tách dữ liệu bảng
+│   ├── NotificationChatService          # Chat realtime (SignalR), thông báo realtime
+│   ├── NewsfeedService                  # Bảng tin khách hàng (bài viết, like, comment, share)
+│   └── ReportingService                 # Tổng hợp doanh thu chuỗi, báo cáo cuối tháng, xuất Excel
+└── apps
+    ├── WebApp (Angular + NG-ZORRO)      # Giao diện Web cho Sếp, Quản lý, Nhân viên & Khách hàng
+    └── MobileApp (Flutter + Dart)       # Ứng dụng di động cho Khách hàng & Nhân viên
 ```
 
 ---
