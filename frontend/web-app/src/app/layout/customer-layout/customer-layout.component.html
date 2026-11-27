@@ -79,6 +79,18 @@
   </div>
 </footer>
 
+@if (showBackToTop) {
+  <button
+    type="button"
+    class="back-to-top-btn"
+    title="Quay lại đầu trang"
+    aria-label="Quay lại đầu trang"
+    (click)="scrollToTop()">
+    <span class="arrow">↑</span>
+    <span class="label">Đầu trang</span>
+  </button>
+}
+
 <nz-modal
   [(nzVisible)]="isLoginModalOpen"
   nzTitle="Đăng nhập hệ thống Seoul Garden"

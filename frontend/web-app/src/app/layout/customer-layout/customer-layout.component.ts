@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -27,11 +27,21 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
 })
 export class CustomerLayoutComponent {
   isLoginModalOpen = false;
+  showBackToTop = false;
   selectedLang = 'vi';
   loginUsername = '';
   loginPassword = '';
 
   constructor(private readonly message: NzMessageService) {}
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.showBackToTop = window.scrollY > 320;
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   openLoginModal(): void {
     this.isLoginModalOpen = true;

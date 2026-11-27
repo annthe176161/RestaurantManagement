@@ -205,6 +205,36 @@
   }
 }
 
+.back-to-top-btn {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 155, 56, 0.7);
+  background: var(--accent-crimson);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(25, 19, 17, 0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+
+  .arrow {
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  &:hover {
+    background: var(--accent-crimson-hover);
+    transform: translateY(-3px);
+  }
+}
+
 @media (max-width: 900px) {
   .main-nav {
     display: none;
