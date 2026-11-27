@@ -16,6 +16,9 @@ export interface NewsfeedPostItem {
   category: 'Khuyến mãi' | 'Món mới' | 'Sự kiện';
   title: string;
   content: string;
+  mediaType?: 'image' | 'video';
+  mediaUrl?: string;
+  posterUrl?: string;
   likes: number;
   comments: number;
   likedByMe?: boolean;
@@ -52,6 +55,8 @@ export class NewsfeedPageComponent {
       title: 'Ưu đãi nhóm 4 người - Tặng ngay 1 phần Ba chỉ bò Mỹ cuộn nấm',
       content:
         'Từ thứ 2 đến thứ 5 hàng tuần, khách hàng đặt bàn trước qua website cho nhóm từ 4 khách trở lên sẽ được tặng ngay 1 phần Ba chỉ bò Mỹ tươi kèm set Panchan 8 món miễn phí refill.',
+      mediaType: 'image',
+      mediaUrl: 'images/bbq-hero.jpg',
       likes: 142,
       comments: 28
     },
@@ -61,9 +66,12 @@ export class NewsfeedPageComponent {
       authorName: 'Chi nhánh Hoàn Kiếm',
       publishedAt: 'Hôm qua lúc 18:30',
       category: 'Món mới',
-      title: 'Ra mắt Menu Mùa Đông: Lẩu Bulgogi Nấm Rừng & Sườn Bò Hầm Kimchi',
+      title: 'Video trải nghiệm: Nướng than hoa không khói & Lẩu Kimchi sôi sùng sục',
       content:
-        'Thực đơn mới đã chính thức có mặt tại tất cả các cơ sở. Nước dùng ngọt thanh từ xương bò ninh 12 tiếng kết hợp nấm hương tươi và thịt bò mềm tan.',
+        'Khám phá không khí ấm cúng tại hệ thống Seoul Garden cùng những phần thịt nướng xèo xèo trên bếp than hoa hiện đại.',
+      mediaType: 'video',
+      mediaUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      posterUrl: 'images/vip-dining.jpg',
       likes: 98,
       comments: 15
     },
@@ -76,6 +84,8 @@ export class NewsfeedPageComponent {
       title: 'Không gian phòng VIP riêng tư cho tiệc sinh nhật & liên hoan công ty',
       content:
         'Hệ thống 6 phòng VIP sức chứa từ 8 đến 24 khách với hệ thống hút khói âm bàn hiện đại, hỗ trợ trang trí backdrop sinh nhật miễn phí khi đặt trước 24 giờ.',
+      mediaType: 'image',
+      mediaUrl: 'images/vip-dining.jpg',
       likes: 76,
       comments: 11
     },
@@ -85,9 +95,11 @@ export class NewsfeedPageComponent {
       authorName: 'Chi nhánh Cầu Giấy',
       publishedAt: '5 ngày trước',
       category: 'Khuyến mãi',
-      title: 'Happy Lunch 11:00 - 14:00: Giảm 15% toàn bộ set Cơm trộn & Mì lạnh',
+      title: 'Happy Lunch 11:00 - 14:00: Giảm 15% toàn bộ set Lẩu Kimchi & Cơm trộn',
       content:
-        'Bữa trưa văn phòng nhanh gọn, đủ chất với Cơm trộn thố đá Bibimbap, Miến trộn Japchae và Canh Kimchi đậu hũ non chuẩn vị Hàn.',
+        'Bữa trưa văn phòng nhanh gọn, đủ chất với Lẩu Kimchi hải sản, Cơm trộn thố đá Bibimbap và Canh Kimchi đậu hũ non chuẩn vị Hàn.',
+      mediaType: 'image',
+      mediaUrl: 'images/kimchi-hotpot.jpg',
       likes: 64,
       comments: 9
     },
@@ -100,6 +112,8 @@ export class NewsfeedPageComponent {
       title: 'Thử ngay Tokbokki Phô Mai Đút Lò phiên bản cay nồng mới',
       content:
         'Sự kết hợp giữa bánh gạo tươi nhập khẩu, chả cá Busan, trứng luộc lòng đào và lớp phô mai Mozzarella phủ dày béo ngậy.',
+      mediaType: 'image',
+      mediaUrl: 'images/kimchi-hotpot.jpg',
       likes: 119,
       comments: 22
     }

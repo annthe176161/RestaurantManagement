@@ -22,6 +22,7 @@ interface FeaturedDish {
   description: string;
   price: number;
   unit: string;
+  imageUrl: string;
   isSignature?: boolean;
 }
 
@@ -33,6 +34,9 @@ interface NewsfeedPost {
   category: 'Khuyến mãi' | 'Món mới' | 'Sự kiện';
   title: string;
   content: string;
+  mediaType?: 'image' | 'video';
+  mediaUrl?: string;
+  posterUrl?: string;
   likes: number;
   comments: number;
   likedByMe?: boolean;
@@ -130,6 +134,7 @@ export class HomeComponent implements OnInit {
       description: 'Ba chỉ heo tươi cắt dày chuẩn Hàn, nướng trên than hoa ăn kèm lá vừng và sốt Ssamjang.',
       price: 219000,
       unit: 'Phần 200g',
+      imageUrl: 'images/bbq-hero.jpg',
       isSignature: true
     },
     {
@@ -140,6 +145,7 @@ export class HomeComponent implements OnInit {
       description: 'Sườn bò Mỹ thượng hạng ướp nước lê Hàn Quốc và xì dầu đặc biệt trong 24 giờ.',
       price: 389000,
       unit: 'Phần 250g',
+      imageUrl: 'images/bbq-hero.jpg',
       isSignature: true
     },
     {
@@ -149,7 +155,8 @@ export class HomeComponent implements OnInit {
       nameKo: '해물 김치전골',
       description: 'Nước dùng kimchi ủ lâu năm đậm đà, kết hợp mực, tôm, đậu hũ non và mì udon.',
       price: 349000,
-      unit: 'Nồi 2-4 người'
+      unit: 'Nồi 2-4 người',
+      imageUrl: 'images/kimchi-hotpot.jpg'
     },
     {
       id: 'd4',
@@ -158,7 +165,8 @@ export class HomeComponent implements OnInit {
       nameKo: '치즈 떡볶이',
       description: 'Bánh gạo dẻo dai hòa quyện sốt Gochujang cay ngọt và phô mai Mozzarella béo ngậy.',
       price: 129000,
-      unit: 'Đĩa'
+      unit: 'Đĩa',
+      imageUrl: 'images/kimchi-hotpot.jpg'
     },
     {
       id: 'd5',
@@ -167,7 +175,8 @@ export class HomeComponent implements OnInit {
       nameKo: '돌솥 비빔밥',
       description: 'Cơm dẻo giòn cháy cạnh trong thố đá nóng, bò băm, 6 loại rau củ và trứng lòng đào.',
       price: 145000,
-      unit: 'Thố'
+      unit: 'Thố',
+      imageUrl: 'images/bbq-hero.jpg'
     },
     {
       id: 'd6',
@@ -176,7 +185,8 @@ export class HomeComponent implements OnInit {
       nameKo: '소고기 잡채',
       description: 'Miến khoai lang Hàn Quốc dai ngon xào cùng thịt bò, nấm đông cô và dầu mè thơm lừng.',
       price: 139000,
-      unit: 'Đĩa'
+      unit: 'Đĩa',
+      imageUrl: 'images/vip-dining.jpg'
     }
   ];
 
@@ -190,6 +200,8 @@ export class HomeComponent implements OnInit {
       title: 'Ưu đãi nhóm 4 người - Tặng ngay 1 phần Ba chỉ bò Mỹ cuộn nấm',
       content:
         'Từ thứ 2 đến thứ 5 hàng tuần, khách hàng đặt bàn trước qua website cho nhóm từ 4 khách trở lên sẽ được tặng ngay 1 phần Ba chỉ bò Mỹ tươi kèm set Panchan 8 món miễn phí refill.',
+      mediaType: 'image',
+      mediaUrl: 'images/bbq-hero.jpg',
       likes: 142,
       comments: 28
     },
@@ -199,9 +211,12 @@ export class HomeComponent implements OnInit {
       authorName: 'Chi nhánh Hoàn Kiếm',
       publishedAt: 'Hôm qua lúc 18:30',
       category: 'Món mới',
-      title: 'Ra mắt Menu Mùa Đông: Lẩu Bulgogi Nấm Rừng & Sườn Bò Hầm Kimchi',
+      title: 'Video trải nghiệm: Nướng than hoa không khói & Lẩu Kimchi sôi sùng sục',
       content:
-        'Thực đơn mới đã chính thức có mặt tại tất cả các cơ sở. Nước dùng ngọt thanh từ xương bò ninh 12 tiếng kết hợp nấm hương tươi và thịt bò mềm tan.',
+        'Khám phá không khí ấm cúng tại hệ thống Seoul Garden cùng những phần thịt nướng xèo xèo trên bếp than hoa hiện đại.',
+      mediaType: 'video',
+      mediaUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      posterUrl: 'images/vip-dining.jpg',
       likes: 98,
       comments: 15
     },
@@ -214,6 +229,8 @@ export class HomeComponent implements OnInit {
       title: 'Không gian phòng VIP riêng tư cho tiệc sinh nhật & liên hoan công ty',
       content:
         'Hệ thống 6 phòng VIP sức chứa từ 8 đến 24 khách với hệ thống hút khói âm bàn hiện đại, hỗ trợ trang trí backdrop sinh nhật miễn phí khi đặt trước 24 giờ.',
+      mediaType: 'image',
+      mediaUrl: 'images/vip-dining.jpg',
       likes: 76,
       comments: 11
     }

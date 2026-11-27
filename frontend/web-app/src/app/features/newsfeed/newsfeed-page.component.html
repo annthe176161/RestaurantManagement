@@ -45,6 +45,21 @@
           <h3 class="feed-title">{{ post.title }}</h3>
           <p class="feed-content">{{ post.content }}</p>
 
+          @if (post.mediaType === 'image' && post.mediaUrl) {
+            <div class="feed-media">
+              <img [src]="post.mediaUrl" [alt]="post.title" loading="lazy" />
+            </div>
+          }
+
+          @if (post.mediaType === 'video' && post.mediaUrl) {
+            <div class="feed-media">
+              <video controls playsinline preload="metadata" [poster]="post.posterUrl || 'images/vip-dining.jpg'">
+                <source [src]="post.mediaUrl" type="video/mp4" />
+                Trình duyệt của bạn không hỗ trợ phát video.
+              </video>
+            </div>
+          }
+
           <nz-divider></nz-divider>
 
           <div class="feed-actions">

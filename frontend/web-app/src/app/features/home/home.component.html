@@ -37,6 +37,9 @@
     </div>
 
     <div class="hero-highlight-card">
+      <div class="hero-card-media">
+        <img src="images/bbq-hero.jpg" alt="Set Nướng Hoàng Gia Seoul" />
+      </div>
       <div class="card-top-tag">ĐẶC SẢN BÁN CHẠY</div>
       <h3>Set Nướng Hoàng Gia Seoul</h3>
       <p class="ko-title">서울 로얄 바비큐 세트</p>
@@ -122,6 +125,9 @@
     <div class="menu-grid">
       @for (dish of filteredDishes; track dish.id) {
         <div class="menu-card">
+          <div class="menu-card-image">
+            <img [src]="dish.imageUrl" [alt]="dish.nameVi" loading="lazy" />
+          </div>
           <div class="menu-card-top">
             <span class="menu-category-label">{{ dish.categoryName }}</span>
             @if (dish.isSignature) {
@@ -177,6 +183,21 @@
 
           <h3 class="feed-title">{{ post.title }}</h3>
           <p class="feed-content">{{ post.content }}</p>
+
+          @if (post.mediaType === 'image' && post.mediaUrl) {
+            <div class="feed-media">
+              <img [src]="post.mediaUrl" [alt]="post.title" loading="lazy" />
+            </div>
+          }
+
+          @if (post.mediaType === 'video' && post.mediaUrl) {
+            <div class="feed-media">
+              <video controls playsinline preload="metadata" [poster]="post.posterUrl || 'images/vip-dining.jpg'">
+                <source [src]="post.mediaUrl" type="video/mp4" />
+                Trình duyệt của bạn không hỗ trợ phát video.
+              </video>
+            </div>
+          }
 
           <nz-divider></nz-divider>
 
