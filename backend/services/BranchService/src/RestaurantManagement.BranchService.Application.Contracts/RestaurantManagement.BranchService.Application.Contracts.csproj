@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.BranchService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.BranchService.Domain.Shared\RestaurantManagement.BranchService.Domain.Shared.csproj" />
+  </ItemGroup>
+</Project>

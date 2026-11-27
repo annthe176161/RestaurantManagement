@@ -1,0 +1,19 @@
+name: restaurant-management
+services:
+  - name: api-gateway
+    project: gateways/ApiGateway/src/RestaurantManagement.ApiGateway/RestaurantManagement.ApiGateway.csproj
+    bindings:
+      - protocol: http
+        port: 5000
+
+  - name: branch-service
+    project: services/BranchService/src/RestaurantManagement.BranchService.HttpApi.Host/RestaurantManagement.BranchService.HttpApi.Host.csproj
+    bindings:
+      - protocol: http
+        port: 5002
+
+  - name: menu-service
+    project: services/MenuService/src/RestaurantManagement.MenuService.HttpApi.Host/RestaurantManagement.MenuService.HttpApi.Host.csproj
+    bindings:
+      - protocol: http
+        port: 5004

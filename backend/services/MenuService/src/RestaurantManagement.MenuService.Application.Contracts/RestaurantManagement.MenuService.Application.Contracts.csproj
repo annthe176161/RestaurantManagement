@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.MenuService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.MenuService.Domain.Shared\RestaurantManagement.MenuService.Domain.Shared.csproj" />
+  </ItemGroup>
+</Project>

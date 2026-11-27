@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.MenuService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.MenuService.Application\RestaurantManagement.MenuService.Application.csproj" />
+    <ProjectReference Include="..\RestaurantManagement.MenuService.EntityFrameworkCore\RestaurantManagement.MenuService.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\RestaurantManagement.MenuService.HttpApi\RestaurantManagement.MenuService.HttpApi.csproj" />
+  </ItemGroup>
+</Project>

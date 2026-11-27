@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.BranchService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.BranchService.Application.Contracts\RestaurantManagement.BranchService.Application.Contracts.csproj" />
+  </ItemGroup>
+</Project>

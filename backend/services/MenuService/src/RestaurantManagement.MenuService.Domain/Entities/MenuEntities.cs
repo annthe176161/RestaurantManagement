@@ -11,6 +11,15 @@ public class MenuCategory : FullAuditedAggregateRoot<Guid>
     public bool IsActive { get; set; } = true;
 
     protected MenuCategory() { }
+
+    public MenuCategory(Guid id, string nameVi, string? nameKo = null, string? nameEn = null, int sortOrder = 0)
+        : base(id)
+    {
+        NameVi = nameVi;
+        NameKo = nameKo;
+        NameEn = nameEn;
+        SortOrder = sortOrder;
+    }
 }
 
 public class MenuItem : FullAuditedAggregateRoot<Guid>

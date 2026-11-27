@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.MenuService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.MenuService.Domain\RestaurantManagement.MenuService.Domain.csproj" />
+    <ProjectReference Include="..\RestaurantManagement.MenuService.Application.Contracts\RestaurantManagement.MenuService.Application.Contracts.csproj" />
+  </ItemGroup>
+</Project>
