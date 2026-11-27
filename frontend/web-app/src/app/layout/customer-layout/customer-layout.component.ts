@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
@@ -14,6 +14,7 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     RouterOutlet,
     FormsModule,
     NzButtonModule,
@@ -32,7 +33,10 @@ export class CustomerLayoutComponent {
   loginUsername = '';
   loginPassword = '';
 
-  constructor(private readonly message: NzMessageService) {}
+  constructor(
+    private readonly message: NzMessageService,
+    private readonly router: Router
+  ) {}
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
@@ -63,9 +67,14 @@ export class CustomerLayoutComponent {
   }
 
   scrollTo(sectionId: string): void {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (this.router.url !== '/') {
+      this.router.navigateByUrl('/').then(() => {
+        setTimeout(() => {
+          document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      });
+      return;
     }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }

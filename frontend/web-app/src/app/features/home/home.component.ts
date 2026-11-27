@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzTagModule } from 'ng-zorro-antd/tag';
@@ -43,6 +44,7 @@ interface NewsfeedPost {
   imports: [
     CommonModule,
     FormsModule,
+    RouterLink,
     NzButtonModule,
     NzCardModule,
     NzTagModule,
@@ -270,10 +272,11 @@ export class HomeComponent implements OnInit {
   }
 
   get filteredPosts(): NewsfeedPost[] {
-    if (this.selectedFeedFilter === 'Tất cả') {
-      return this.posts;
-    }
-    return this.posts.filter((p) => p.category === this.selectedFeedFilter);
+    const list =
+      this.selectedFeedFilter === 'Tất cả'
+        ? this.posts
+        : this.posts.filter((p) => p.category === this.selectedFeedFilter);
+    return list.slice(0, 2);
   }
 
   selectBranchAndBook(branchName: string): void {

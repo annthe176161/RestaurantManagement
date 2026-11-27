@@ -1,0 +1,197 @@
+.newsfeed-page {
+  padding: 48px 0 80px;
+  min-height: 75vh;
+}
+
+.page-top-bar {
+  text-align: center;
+  margin-bottom: 32px;
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-crimson);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .eyebrow {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--accent-crimson);
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 800;
+    margin: 0 0 8px;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+}
+
+.feed-toolbar {
+  max-width: 780px;
+  margin: 0 auto 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  .filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    button {
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .active-tab {
+      background-color: var(--accent-crimson) !important;
+      border-color: var(--accent-crimson) !important;
+    }
+  }
+
+  .search-box {
+    width: 260px;
+  }
+}
+
+.newsfeed-list {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feed-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-warm);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 4px 16px rgba(25, 19, 17, 0.03);
+
+  .feed-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .feed-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .avatar-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--accent-crimson);
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .author-name {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .post-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .feed-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+
+  .feed-content {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  nz-divider {
+    margin: 16px 0 10px;
+  }
+
+  .feed-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+      background: #f5efe7;
+      color: var(--text-primary);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    &.liked {
+      color: var(--accent-crimson);
+      background: rgba(196, 54, 39, 0.08);
+    }
+  }
+}
+
+.empty-feed {
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-warm);
+  border-radius: 14px;
+  color: var(--text-secondary);
+}
+
+.load-more-wrap {
+  text-align: center;
+  margin-top: 28px;
+
+  .load-more-btn {
+    border-radius: 999px;
+    font-weight: 600;
+    padding: 0 28px;
+  }
+}
