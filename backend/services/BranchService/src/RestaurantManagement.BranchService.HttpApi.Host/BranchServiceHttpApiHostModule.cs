@@ -51,6 +51,9 @@ public class BranchServiceHttpApiHostModule : AbpModule
         {
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "BranchService API v1");
         });
-        app.UseConfiguredEndpoints();
+        app.UseConfiguredEndpoints(endpoints =>
+        {
+            endpoints.MapGet("/", () => Results.Redirect("/swagger"));
+        });
     }
 }
