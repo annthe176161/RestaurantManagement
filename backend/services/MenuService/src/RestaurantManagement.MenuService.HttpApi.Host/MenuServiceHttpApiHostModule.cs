@@ -44,6 +44,7 @@ public class MenuServiceHttpApiHostModule : AbpModule
             app.UseDeveloperExceptionPage();
         }
 
+        app.UseStaticFiles();
         app.UseRouting();
         app.UseCors();
         app.UseSwagger();
