@@ -16,11 +16,14 @@ Xây dựng một nền tảng **All-in-One** phục vụ đồng thời 3 nhóm
 
 ## Phân Quyền Hệ Thống (Roles)
 
+Hệ thống phân chia theo 4 vai trò vận hành chính (**Sếp**, **Quản lý**, **Nhân viên ngoài**, **Bếp**) cùng vai trò **Khách hàng**:
+
 | Vai trò | Phạm vi quyền hạn chính |
 | :--- | :--- |
-| **Sếp / Chủ chuỗi (CEO / Super Admin)** | Xem toàn bộ cơ sở, dashboard doanh thu tổng & từng chi nhánh, duyệt báo cáo tài chính/Excel, quản lý quản lý cơ sở, xem tất cả dữ liệu. |
-| **Quản lý cơ sở (Branch Manager)** | Quản lý nhân viên tại chi nhánh, xếp lịch làm theo tuần, tính lương, thêm/sửa/in menu, tạo hóa đơn, xác nhận đặt bàn, đăng bài lên Newsfeed. |
-| **Nhân viên (Staff / Bếp / Phục vụ / Thu ngân)** | Xem lịch làm cá nhân, check-in/check-out giờ làm, xem bảng công/lương cá nhân, chat realtime nội bộ, nhận thông báo realtime. |
+| **Sếp (Chủ chuỗi / CEO / Super Admin)** | Xem toàn bộ cơ sở, dashboard doanh thu tổng & từng chi nhánh, duyệt báo cáo tài chính/Excel, quản lý các quản lý cơ sở, xem tất cả dữ liệu hệ thống. |
+| **Quản lý (Quản lý cơ sở / Branch Manager)** | Quản lý nhân viên ngoài & bếp tại chi nhánh, xếp lịch làm theo tuần, tính lương, thêm/sửa/in menu, tạo & duyệt hóa đơn xuất/mua, xác nhận đặt bàn, đăng bài lên Newsfeed. |
+| **Nhân viên ngoài (Phục vụ / Lễ tân / Thu ngân)** | Xem lịch làm cá nhân, check-in/check-out giờ làm, xem bảng công/lương cá nhân, tiếp nhận đặt bàn, hỗ trợ khách tại bàn/order, thu ngân, chat & nhận thông báo realtime. |
+| **Bếp (Đầu bếp / Phụ bếp / Pha chế)** | Xem lịch làm cá nhân, check-in/check-out giờ làm, xem bảng công/lương cá nhân, nhận đơn gọi món theo thời gian thực, cập nhật trạng thái món (đang làm/đã xong/hết nguyên liệu), chat & nhận thông báo realtime với nhân viên ngoài và quản lý. |
 | **Khách hàng (Customer)** | Lướt Newsfeed nhà hàng, xem danh sách cơ sở, xem menu, đặt bàn trực tuyến, tương tác bài viết, nhận thông báo xác nhận bàn. |
 
 ---
