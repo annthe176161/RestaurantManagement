@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.NewsfeedService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.NewsfeedService.Domain.Shared\RestaurantManagement.NewsfeedService.Domain.Shared.csproj" />
+  </ItemGroup>
+</Project>

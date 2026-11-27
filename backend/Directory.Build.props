@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AbpVersion>8.3.4</AbpVersion>
+    <EfCoreVersion>8.0.4</EfCoreVersion>
+  </PropertyGroup>
+</Project>

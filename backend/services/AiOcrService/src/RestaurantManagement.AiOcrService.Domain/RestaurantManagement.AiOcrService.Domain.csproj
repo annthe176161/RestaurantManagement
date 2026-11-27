@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.AiOcrService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.AiOcrService.Domain.Shared\RestaurantManagement.AiOcrService.Domain.Shared.csproj" />
+  </ItemGroup>
+</Project>

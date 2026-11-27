@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.ReportingService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.ReportingService.Domain.Shared\RestaurantManagement.ReportingService.Domain.Shared.csproj" />
+  </ItemGroup>
+</Project>

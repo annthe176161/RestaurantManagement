@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RestaurantManagement.TableBookingService</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\RestaurantManagement.TableBookingService.Domain.Shared\RestaurantManagement.TableBookingService.Domain.Shared.csproj" />
+  </ItemGroup>
+</Project>
