@@ -1,0 +1,123 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#hero" (click)="$event.preventDefault(); scrollTo('hero')">
+      <span class="brand-ko">한식당</span>
+      <div class="brand-text">
+        <span class="brand-name">SEOUL GARDEN</span>
+        <span class="brand-sub">Chuỗi Nhà Hàng Hàn Quốc</span>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#hero" (click)="$event.preventDefault(); scrollTo('hero')">Trang chủ</a>
+      <a href="#branches" (click)="$event.preventDefault(); scrollTo('branches')">Cơ sở</a>
+      <a href="#menu" (click)="$event.preventDefault(); scrollTo('menu')">Thực đơn</a>
+      <a href="#newsfeed" (click)="$event.preventDefault(); scrollTo('newsfeed')">Bảng tin</a>
+      <a href="#booking" (click)="$event.preventDefault(); scrollTo('booking')">Đặt bàn</a>
+    </nav>
+
+    <div class="header-actions">
+      <nz-select [(ngModel)]="selectedLang" class="lang-select" nzSize="small">
+        <nz-option nzValue="vi" nzLabel="VI"></nz-option>
+        <nz-option nzValue="ko" nzLabel="KO"></nz-option>
+        <nz-option nzValue="en" nzLabel="EN"></nz-option>
+      </nz-select>
+
+      <button
+        nz-button
+        nzType="default"
+        class="btn-outline"
+        (click)="openLoginModal()">
+        Đăng nhập
+      </button>
+
+      <button
+        nz-button
+        nzType="primary"
+        class="btn-crimson"
+        (click)="scrollTo('booking')">
+        Đặt bàn ngay
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="main-content">
+  <router-outlet />
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">SEOUL GARDEN · 한식당</div>
+      <p>
+        Hệ thống chuỗi nhà hàng nướng & lẩu chuẩn vị Hàn Quốc. Không gian ấm cúng,
+        nguyên liệu nhập khẩu tươi ngon mỗi ngày.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Khám phá</h4>
+      <a href="#branches" (click)="$event.preventDefault(); scrollTo('branches')">Hệ thống cơ sở</a>
+      <a href="#menu" (click)="$event.preventDefault(); scrollTo('menu')">Thực đơn đặc sắc</a>
+      <a href="#newsfeed" (click)="$event.preventDefault(); scrollTo('newsfeed')">Bảng tin & Ưu đãi</a>
+      <a href="#booking" (click)="$event.preventDefault(); scrollTo('booking')">Đặt bàn trực tuyến</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Giờ phục vụ & Liên hệ</h4>
+      <p>Thứ 2 - Chủ nhật: 10:00 - 22:30</p>
+      <p>Hotline đặt bàn: 1900 6868</p>
+      <p>Email: contact&#64;seoulgarden.vn</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© 2026 Seoul Garden Restaurant Management System.</span>
+    </div>
+  </div>
+</footer>
+
+<nz-modal
+  [(nzVisible)]="isLoginModalOpen"
+  nzTitle="Đăng nhập hệ thống Seoul Garden"
+  [nzFooter]="null"
+  (nzOnCancel)="closeLoginModal()">
+  <ng-container *nzModalContent>
+    <div class="login-modal-body">
+      <p class="login-hint">
+        Dành cho <strong>Khách hàng</strong>, <strong>Nhân viên ngoài</strong>,
+        <strong>Bếp</strong>, <strong>Quản lý</strong> và <strong>Sếp</strong>.
+      </p>
+
+      <div class="form-field">
+        <label>Tên đăng nhập / Số điện thoại</label>
+        <input nz-input [(ngModel)]="loginUsername" placeholder="Nhập tài khoản..." />
+      </div>
+
+      <div class="form-field">
+        <label>Mật khẩu</label>
+        <input nz-input type="password" [(ngModel)]="loginPassword" placeholder="Nhập mật khẩu..." />
+      </div>
+
+      <button
+        nz-button
+        nzType="primary"
+        nzBlock
+        class="btn-crimson"
+        (click)="submitLogin()">
+        Đăng nhập
+      </button>
+
+      <div class="roles-preview">
+        <span>Phân hệ hỗ trợ:</span>
+        <nz-tag>Sếp</nz-tag>
+        <nz-tag>Quản lý</nz-tag>
+        <nz-tag>Nhân viên ngoài</nz-tag>
+        <nz-tag>Bếp</nz-tag>
+        <nz-tag>Khách hàng</nz-tag>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

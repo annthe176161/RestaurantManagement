@@ -1,0 +1,282 @@
+<section id="hero" class="hero-section">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="hero-badge">HỆ THỐNG NHÀ HÀNG NƯỚNG & LẨU HÀN QUỐC</span>
+      <h1>
+        Trọn Vị <span>Than Hoa Seoul</span><br />
+        Giữa Lòng Thành Phố
+      </h1>
+      <p>
+        Thưởng thức thịt nướng thượng hạng tẩm ướp công thức truyền thống, lẩu kimchi cay nồng
+        và 8 món Panchan miễn phí mỗi ngày tại hệ thống các cơ sở trên toàn quốc.
+      </p>
+
+      <div class="hero-actions">
+        <button nz-button nzType="primary" nzSize="large" class="btn-crimson" (click)="scrollTo('booking')">
+          Đặt bàn ngay
+        </button>
+        <button nz-button nzType="default" nzSize="large" class="btn-ghost" (click)="scrollTo('menu')">
+          Khám phá thực đơn
+        </button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong>{{ branches.length }}+</strong>
+          <span>Cơ sở hoạt động</span>
+        </div>
+        <div class="stat-item">
+          <strong>60+</strong>
+          <span>Món ăn chuẩn vị Hàn</span>
+        </div>
+        <div class="stat-item">
+          <strong>4.9 / 5</strong>
+          <span>Đánh giá thực khách</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-highlight-card">
+      <div class="card-top-tag">ĐẶC SẢN BÁN CHẠY</div>
+      <h3>Set Nướng Hoàng Gia Seoul</h3>
+      <p class="ko-title">서울 로얄 바비큐 세트</p>
+      <p class="card-desc">
+        Kết hợp Sườn bò Mỹ Galbi, Ba chỉ heo Samgyeopsal, Nạc vai ướp sốt tiêu đen,
+        Lẩu Kimchi và Panchan không giới hạn.
+      </p>
+      <div class="card-price-row">
+        <div>
+          <span class="price-label">Giá ưu đãi nhóm 4 khách</span>
+          <div class="price-value">899.000 đ</div>
+        </div>
+        <button nz-button nzType="primary" class="btn-gold" (click)="scrollTo('booking')">
+          Giữ bàn ngay
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="branches" class="page-section">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">HỆ THỐNG CHI NHÁNH</span>
+      <h2>Các Cơ Sở Trong Hệ Thống</h2>
+      <p>
+        Chọn cơ sở gần bạn nhất để xem giờ mở cửa, số lượng bàn phục vụ và đặt chỗ trước.
+      </p>
+      @if (isUsingSampleBranches) {
+        <div class="sample-notice">
+          <nz-tag nzColor="gold">Dữ liệu minh họa (DB hiện đang trống - sẽ tự đồng bộ khi tạo cơ sở qua API)</nz-tag>
+        </div>
+      }
+    </div>
+
+    <div class="branches-grid">
+      @for (branch of branches; track branch.id) {
+        <div class="branch-card">
+          <div class="branch-card-header">
+            <span class="branch-code">{{ branch.code }}</span>
+            <nz-tag [nzColor]="branch.status === 1 ? 'green' : 'orange'">
+              {{ branch.status === 1 ? 'Đang mở cửa' : 'Tạm ngưng' }}
+            </nz-tag>
+          </div>
+
+          <h3>{{ branch.name }}</h3>
+          <p class="branch-info"><strong>Địa chỉ:</strong> {{ branch.address }}</p>
+          <p class="branch-info"><strong>Hotline:</strong> {{ branch.phone }}</p>
+          <p class="branch-info">
+            <strong>Giờ phục vụ:</strong> {{ branch.openTime.slice(0, 5) }} - {{ branch.closeTime.slice(0, 5) }}
+            · <strong>Quy mô:</strong> {{ branch.totalTables }} bàn
+          </p>
+
+          <button nz-button nzType="primary" nzBlock class="btn-crimson" (click)="selectBranchAndBook(branch.name)">
+            Đặt bàn tại cơ sở này
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="page-section section-alt">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">THỰC ĐƠN ĐẶC SẮC</span>
+      <h2>Hương Vị Chuẩn Hàn Quốc</h2>
+      <p>Khám phá các món nướng, lẩu và món ăn đường phố được yêu thích nhất tại Seoul Garden.</p>
+    </div>
+
+    <div class="filter-tabs">
+      @for (cat of menuCategoryTabs; track cat) {
+        <button
+          nz-button
+          [nzType]="selectedMenuCategory === cat ? 'primary' : 'default'"
+          [class.active-tab]="selectedMenuCategory === cat"
+          (click)="selectedMenuCategory = cat">
+          {{ cat }}
+        </button>
+      }
+    </div>
+
+    <div class="menu-grid">
+      @for (dish of filteredDishes; track dish.id) {
+        <div class="menu-card">
+          <div class="menu-card-top">
+            <span class="menu-category-label">{{ dish.categoryName }}</span>
+            @if (dish.isSignature) {
+              <nz-tag nzColor="red">Best Seller</nz-tag>
+            }
+          </div>
+          <h3>{{ dish.nameVi }}</h3>
+          <div class="menu-ko">{{ dish.nameKo }}</div>
+          <p class="menu-desc">{{ dish.description }}</p>
+          <div class="menu-card-footer">
+            <div class="menu-price">{{ dish.price | number:'1.0-0' }} đ</div>
+            <span class="menu-unit">/ {{ dish.unit }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section id="newsfeed" class="page-section">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">BẢNG TIN NHÀ HÀNG</span>
+      <h2>Newsfeed & Ưu Đãi Mới Nhất</h2>
+      <p>Cập nhật món mới, chương trình khuyến mãi và sự kiện từ toàn hệ thống nhà hàng.</p>
+    </div>
+
+    <div class="filter-tabs">
+      @for (filter of feedFilters; track filter) {
+        <button
+          nz-button
+          [nzType]="selectedFeedFilter === filter ? 'primary' : 'default'"
+          [class.active-tab]="selectedFeedFilter === filter"
+          (click)="selectedFeedFilter = filter">
+          {{ filter }}
+        </button>
+      }
+    </div>
+
+    <div class="newsfeed-list">
+      @for (post of filteredPosts; track post.id) {
+        <article class="feed-card">
+          <div class="feed-header">
+            <div class="feed-author">
+              <div class="avatar-circle">{{ post.authorName.charAt(0) }}</div>
+              <div>
+                <div class="author-name">{{ post.authorName }}</div>
+                <div class="post-meta">{{ post.branchName }} · {{ post.publishedAt }}</div>
+              </div>
+            </div>
+            <nz-tag nzColor="volcano">{{ post.category }}</nz-tag>
+          </div>
+
+          <h3 class="feed-title">{{ post.title }}</h3>
+          <p class="feed-content">{{ post.content }}</p>
+
+          <nz-divider></nz-divider>
+
+          <div class="feed-actions">
+            <button
+              nz-button
+              nzType="text"
+              [class.liked]="post.likedByMe"
+              (click)="toggleLike(post)">
+              {{ post.likedByMe ? 'Đã thích' : 'Thích' }} ({{ post.likes }})
+            </button>
+            <button nz-button nzType="text" (click)="promptLoginForAction('bình luận bài viết')">
+              Bình luận ({{ post.comments }})
+            </button>
+            <button nz-button nzType="text" (click)="promptLoginForAction('chia sẻ bài viết')">
+              Chia sẻ
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section id="booking" class="page-section booking-section">
+  <div class="container booking-grid">
+    <div class="booking-info">
+      <span class="eyebrow">ĐẶT BÀN TRỰC TUYẾN</span>
+      <h2>Giữ Chỗ Trước Để Có Trải Nghiệm Tốt Nhất</h2>
+      <p>
+        Đặt bàn trước chỉ trong 30 giây. Hệ thống sẽ gửi thông báo trực tiếp đến Lễ tân cơ sở
+        để chuẩn bị bàn và bếp nướng sẵn sàng đón bạn.
+      </p>
+      <ul class="booking-perks">
+        <li>Không cần cọc trước cho bàn dưới 10 khách</li>
+        <li>Hỗ trợ chọn khu vực Phòng VIP hoặc Khu nướng BBQ</li>
+        <li>Giữ bàn tối đa 20 phút kể từ giờ hẹn</li>
+      </ul>
+    </div>
+
+    <div class="booking-form-card">
+      <h3>Thông Tin Đặt Bàn</h3>
+
+      <div class="form-grid">
+        <div class="form-item full">
+          <label>Chọn cơ sở</label>
+          <nz-select [(ngModel)]="bookingForm.branchName" class="full-width">
+            @for (b of branches; track b.id) {
+              <nz-option [nzValue]="b.name" [nzLabel]="b.name"></nz-option>
+            }
+          </nz-select>
+        </div>
+
+        <div class="form-item">
+          <label>Ngày đến</label>
+          <nz-date-picker [(ngModel)]="bookingForm.date" nzFormat="dd/MM/yyyy" class="full-width"></nz-date-picker>
+        </div>
+
+        <div class="form-item">
+          <label>Khung giờ</label>
+          <nz-select [(ngModel)]="bookingForm.timeSlot" class="full-width">
+            @for (slot of timeSlots; track slot) {
+              <nz-option [nzValue]="slot" [nzLabel]="slot"></nz-option>
+            }
+          </nz-select>
+        </div>
+
+        <div class="form-item">
+          <label>Số lượng khách</label>
+          <nz-input-number [(ngModel)]="bookingForm.guestCount" [nzMin]="1" [nzMax]="50" class="full-width"></nz-input-number>
+        </div>
+
+        <div class="form-item">
+          <label>Khu vực mong muốn</label>
+          <nz-select [(ngModel)]="bookingForm.area" class="full-width">
+            @for (a of areaOptions; track a) {
+              <nz-option [nzValue]="a" [nzLabel]="a"></nz-option>
+            }
+          </nz-select>
+        </div>
+
+        <div class="form-item">
+          <label>Họ và tên *</label>
+          <input nz-input [(ngModel)]="bookingForm.customerName" placeholder="Nguyễn Văn A" />
+        </div>
+
+        <div class="form-item">
+          <label>Số điện thoại *</label>
+          <input nz-input [(ngModel)]="bookingForm.customerPhone" placeholder="09xx xxx xxx" />
+        </div>
+
+        <div class="form-item full">
+          <label>Ghi chú (sinh nhật, dị ứng món...)</label>
+          <textarea nz-input rows="2" [(ngModel)]="bookingForm.note" placeholder="Ví dụ: Bàn gần cửa sổ, chuẩn bị ghế trẻ em..."></textarea>
+        </div>
+      </div>
+
+      <button nz-button nzType="primary" nzSize="large" nzBlock class="btn-crimson submit-btn" (click)="submitBooking()">
+        Xác nhận đặt bàn
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+@import 'ng-zorro-antd/ng-zorro-antd.min.css';
+
+:root {
+  --bg-cream: #faf7f2;
+  --bg-surface: #ffffff;
+  --bg-charcoal: #191311;
+  --bg-charcoal-soft: #261d1a;
+  --accent-crimson: #c43627;
+  --accent-crimson-hover: #a82b1e;
+  --accent-gold: #d49b38;
+  --text-primary: #1f1917;
+  --text-secondary: #5c534f;
+  --border-warm: #e8e0d5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Be Vietnam Pro', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-crimson);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
