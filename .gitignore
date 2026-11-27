@@ -1,0 +1,36 @@
+# .NET / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+TestResults/
+*.log
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+tmp/
+out-tsc/
+
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+
+# Environment & Secrets
+.env
+.env.local
+appsettings.Development.json
+appsettings.Local.json
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
